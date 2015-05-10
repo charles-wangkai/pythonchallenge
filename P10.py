@@ -20,7 +20,7 @@ def look_and_say(number):
 
 def main():
     number = '1'
-    for i in range(30):
+    for _ in range(30):
         number = look_and_say(number)
     print(len(number))
 
