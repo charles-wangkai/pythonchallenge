@@ -6,8 +6,7 @@
 from collections import Counter
 from operator import itemgetter
 import re
-import urllib
-
+import urllib.request
 
 def main():
     source = urllib.request.urlopen('http://www.pythonchallenge.com/pc/def/ocr.html').read().decode()
