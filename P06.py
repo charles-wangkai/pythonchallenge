@@ -4,7 +4,7 @@
 # A: http://www.pythonchallenge.com/pc/def/oxygen.html
 
 import re
-import urllib
+import urllib.request
 import zipfile
 
 def main():
