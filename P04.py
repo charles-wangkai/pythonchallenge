@@ -4,7 +4,7 @@
 # A: http://www.pythonchallenge.com/pc/def/peak.html
 
 import re
-import urllib
+import urllib.request
 
 def main():
     nothing = 12345
