@@ -4,7 +4,7 @@
 # A: http://www.pythonchallenge.com/pc/def/linkedlist.php
 
 import re
-import urllib
+import urllib.request
 
 def main():
     source = urllib.request.urlopen('http://www.pythonchallenge.com/pc/def/equality.html').read().decode()
