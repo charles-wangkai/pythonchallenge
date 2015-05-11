@@ -3,7 +3,7 @@
 # Q: http://www.pythonchallenge.com/pc/return/5808.html
 # A: http://www.pythonchallenge.com/pc/return/evil.html
 
-import urllib
+import urllib.request
 from PIL import Image
 
 def configure_auth():
