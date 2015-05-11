@@ -4,7 +4,7 @@
 # A: http://www.pythonchallenge.com/pc/def/integrity.html
 
 import re
-import urllib
+import urllib.request
 from PIL import Image
 
 def is_gray(pixel):
