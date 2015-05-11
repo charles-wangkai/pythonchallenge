@@ -6,7 +6,7 @@
 import ast
 import bz2
 import re
-import urllib
+import urllib.request
 
 def main():
     source = urllib.request.urlopen('http://www.pythonchallenge.com/pc/def/integrity.html').read().decode()
