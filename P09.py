@@ -4,7 +4,7 @@
 # A: http://www.pythonchallenge.com/pc/return/bull.html
 
 import re
-import urllib
+import urllib.request
 from PIL import Image, ImageDraw
 
 def configure_auth():
