@@ -6,7 +6,7 @@
 import subprocess
 import tempfile
 import time
-import urllib
+import urllib.request
 
 def configure_auth():
     password_mgr = urllib.request.HTTPPasswordMgrWithDefaultRealm()
