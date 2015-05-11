@@ -4,7 +4,7 @@
 # A: http://www.pythonchallenge.com/pc/return/italy.html
 
 import re
-import urllib
+import urllib.request
 import xmlrpc.client
 
 def configure_auth():
