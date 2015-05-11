@@ -4,7 +4,7 @@
 # A: http://www.pythonchallenge.com/pc/def/channel.html
 
 import pickle
-import urllib
+import urllib.request
 
 def main():
     f = urllib.request.urlopen('http://www.pythonchallenge.com/pc/def/banner.p')
