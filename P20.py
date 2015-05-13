@@ -73,9 +73,8 @@ def main():
     local_file.write(request_url(hiding_bytes_start).read())
     
     zip_file = zipfile.ZipFile(local_file)
-    pwd = ''.join(list(reversed(nickname))).encode()
+    pwd = nickname[::-1].encode()
     print(zip_file.open('readme.txt', pwd=pwd).read().decode())
 
 if __name__ == '__main__':
     main()
-
