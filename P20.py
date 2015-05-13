@@ -9,6 +9,8 @@ import urllib.request
 import zipfile
 
 content_length = None
+zip_file = None
+pwd = None
 
 def configure_auth():
     password_mgr = urllib.request.HTTPPasswordMgrWithDefaultRealm()
@@ -30,8 +32,8 @@ def extract_content_range(f):
     match = re.search(r'(\d+)-(\d+)/(\d+)', content_range)
     return (int(match.group(1)), int(match.group(2)), int(match.group(3)))
 
-def main():
-    global content_length
+def download_zip_file():
+    global content_length, zip_file, pwd
     
     configure_auth()
     
@@ -50,6 +52,7 @@ def main():
         match = re.search(r'ok, (\w+)', content)
         if match:
             nickname = match.group(1)
+            pwd = nickname[::-1].encode()
         
         bytes_start = extract_content_range(f)[1] + 1
     
@@ -73,8 +76,14 @@ def main():
     local_file.write(request_url(hiding_bytes_start).read())
     
     zip_file = zipfile.ZipFile(local_file)
-    pwd = nickname[::-1].encode()
-    print(zip_file.open('readme.txt', pwd=pwd).read().decode())
+
+def read_zip_file(name):
+    if not zip_file:
+        download_zip_file()
+    return zip_file.open(name, pwd=pwd).read()
+
+def main():
+    print(read_zip_file('readme.txt').decode())
 
 if __name__ == '__main__':
     main()
