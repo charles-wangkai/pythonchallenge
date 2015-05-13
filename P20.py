@@ -35,7 +35,7 @@ def main():
     
     configure_auth()
     
-    _, bytes_end, content_length = extract_content_range(request_url())
+    bytes_end, content_length = extract_content_range(request_url())[1:3]
     
     bytes_start = bytes_end + 1
     while True:
