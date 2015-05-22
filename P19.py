@@ -19,12 +19,18 @@ def configure_auth():
     opener = urllib.request.build_opener(auth_handler)
     urllib.request.install_opener(opener)
 
-def main():
+def download_email():
     configure_auth()
     source = urllib.request.urlopen('http://www.pythonchallenge.com/pc/hex/bin.html').read().decode()
 
     email_content = re.search(r'<!--\s+(.+)\s+-->', source, re.DOTALL).group(1)
-    email_message = email.message_from_string(email_content)
+    return email.message_from_string(email_content)
+
+def retrive_leopold_addr():
+    return download_email().get('From')
+
+def main():
+    email_message = download_email()
     for part in email_message.walk():
         if part.get_content_maintype() == 'audio':
             wave_file = tempfile.NamedTemporaryFile()
