@@ -39,7 +39,7 @@ def bfs(image):
         index = prevs[queue[index]]
     return list(reversed(path))
 
-def main():
+def solve_zipfile():
     configure_auth()
     local_filename = urllib.request.urlretrieve('http://www.pythonchallenge.com/pc/hex/maze.png')[0]
     image = Image.open(local_filename)
@@ -54,7 +54,10 @@ def main():
             continue
         out_file.write(bytes([image.getpixel(coord)[0]]))
     
-    zf = zipfile.ZipFile(out_file)
+    return zipfile.ZipFile(out_file)
+
+def main():
+    zf = solve_zipfile()
     
     image = Image.open(zf.open('maze.jpg'))
     image.show()
