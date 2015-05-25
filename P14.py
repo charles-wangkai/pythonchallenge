@@ -5,16 +5,10 @@
 
 import urllib.request
 from PIL import Image
+import PC_Util
 
 index = 0
 x, y = -1, 0
-
-def configure_auth():
-    password_mgr = urllib.request.HTTPPasswordMgrWithDefaultRealm()
-    password_mgr.add_password(None, 'http://www.pythonchallenge.com', 'huge', 'file')
-    auth_handler = urllib.request.HTTPBasicAuthHandler(password_mgr)
-    opener = urllib.request.build_opener(auth_handler)
-    urllib.request.install_opener(opener)
 
 def fill(image, out_image, offset_x, offset_y, step):
     global index, x, y
@@ -25,7 +19,7 @@ def fill(image, out_image, offset_x, offset_y, step):
         index += 1
 
 def main():
-    configure_auth()
+    PC_Util.configure_auth()
     local_filename = urllib.request.urlretrieve('http://www.pythonchallenge.com/pc/return/wire.png')[0]
     image = Image.open(local_filename)
     
