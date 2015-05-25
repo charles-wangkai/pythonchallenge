@@ -7,17 +7,11 @@ import tempfile
 import urllib.request
 import zipfile
 from PIL import Image
+import PC_Util
 
 TOP, BOTTOM = (639, 0), (1, 640)
 WHITE_COLOR = (255, 255, 255, 255)
 OFFSETS = [(0, -1), (1, 0), (0, 1), (-1, 0)]
-
-def configure_auth():
-    password_mgr = urllib.request.HTTPPasswordMgrWithDefaultRealm()
-    password_mgr.add_password(None, 'http://www.pythonchallenge.com', 'butter', 'fly')
-    auth_handler = urllib.request.HTTPBasicAuthHandler(password_mgr)
-    opener = urllib.request.build_opener(auth_handler)
-    urllib.request.install_opener(opener)
 
 def bfs(image):
     width, height = image.size
@@ -40,7 +34,7 @@ def bfs(image):
     return list(reversed(path))
 
 def solve_zipfile():
-    configure_auth()
+    PC_Util.configure_auth()
     local_filename = urllib.request.urlretrieve('http://www.pythonchallenge.com/pc/hex/maze.png')[0]
     image = Image.open(local_filename)
     
