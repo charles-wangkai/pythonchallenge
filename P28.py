@@ -5,19 +5,13 @@
 
 import urllib.request
 from PIL import Image
-
-def configure_auth():
-    password_mgr = urllib.request.HTTPPasswordMgrWithDefaultRealm()
-    password_mgr.add_password(None, 'http://www.pythonchallenge.com', 'repeat', 'switch')
-    auth_handler = urllib.request.HTTPBasicAuthHandler(password_mgr)
-    opener = urllib.request.build_opener(auth_handler)
-    urllib.request.install_opener(opener)
+import PC_Util
 
 def whodunnit():
     return 'Guido van Rossum'.lower()
 
 def main():
-    configure_auth()
+    PC_Util.configure_auth()
     local_filename = urllib.request.urlretrieve('http://www.pythonchallenge.com/pc/ring/bell.png')[0]
     image = Image.open(local_filename)
     width, height = image.size
