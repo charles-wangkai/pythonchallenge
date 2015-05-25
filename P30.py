@@ -14,8 +14,8 @@ def factorize(n):
 
 def main():
     PC_Util.configure_auth()
-    local_filename = urllib.request.urlretrieve('http://www.pythonchallenge.com/pc/ring/yankeedoodle.csv')[0]
-    numbers = open(local_filename).read().replace(',', '').split()
+    csv_content = urllib.request.urlopen('http://www.pythonchallenge.com/pc/ring/yankeedoodle.csv').read().decode()
+    numbers = csv_content.replace(',', '').split()
     
     width, height = factorize(len(numbers))
     out_image = Image.new('L', (width, height))
