@@ -7,17 +7,11 @@ import re
 import tempfile
 import urllib.request
 import zipfile
+import PC_Util
 
 content_length = None
 zip_file = None
 pwd = None
-
-def configure_auth():
-    password_mgr = urllib.request.HTTPPasswordMgrWithDefaultRealm()
-    password_mgr.add_password(None, 'http://www.pythonchallenge.com', 'butter', 'fly')
-    auth_handler = urllib.request.HTTPBasicAuthHandler(password_mgr)
-    opener = urllib.request.build_opener(auth_handler)
-    urllib.request.install_opener(opener)
 
 def request_url(bytes_start=None):
     headers = {}
@@ -35,7 +29,7 @@ def extract_content_range(f):
 def download_zip_file():
     global content_length, zip_file, pwd
     
-    configure_auth()
+    PC_Util.configure_auth()
     
     bytes_end, content_length = extract_content_range(request_url())[1:3]
     
