@@ -11,16 +11,10 @@ import tempfile
 import time
 import urllib.request
 import wave
-
-def configure_auth():
-    password_mgr = urllib.request.HTTPPasswordMgrWithDefaultRealm()
-    password_mgr.add_password(None, 'http://www.pythonchallenge.com', 'butter', 'fly')
-    auth_handler = urllib.request.HTTPBasicAuthHandler(password_mgr)
-    opener = urllib.request.build_opener(auth_handler)
-    urllib.request.install_opener(opener)
+import PC_Util
 
 def download_email():
-    configure_auth()
+    PC_Util.configure_auth()
     source = urllib.request.urlopen('http://www.pythonchallenge.com/pc/hex/bin.html').read().decode()
 
     email_content = re.search(r'<!--\s+(.+)\s+-->', source, re.DOTALL).group(1)
