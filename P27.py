@@ -8,19 +8,13 @@ import bz2
 import keyword
 import urllib.request
 from PIL import Image
-
-def configure_auth():
-    password_mgr = urllib.request.HTTPPasswordMgrWithDefaultRealm()
-    password_mgr.add_password(None, 'http://www.pythonchallenge.com', 'butter', 'fly')
-    auth_handler = urllib.request.HTTPBasicAuthHandler(password_mgr)
-    opener = urllib.request.build_opener(auth_handler)
-    urllib.request.install_opener(opener)
+import PC_Util
 
 def is_reserved_word(word):
     return word in keyword.kwlist or word in dir(builtins)
 
 def main():
-    configure_auth()
+    PC_Util.configure_auth()
     local_filename = urllib.request.urlretrieve('http://www.pythonchallenge.com/pc/hex/zigzag.gif')[0]
     image = Image.open(local_filename)
     
