@@ -5,15 +5,9 @@
 
 import urllib.request
 from PIL import Image
+import PC_Util
 
 MARKER_LEFT_COLOR = [255, 0, 255]
-
-def configure_auth():
-    password_mgr = urllib.request.HTTPPasswordMgrWithDefaultRealm()
-    password_mgr.add_password(None, 'http://www.pythonchallenge.com', 'huge', 'file')
-    auth_handler = urllib.request.HTTPBasicAuthHandler(password_mgr)
-    opener = urllib.request.build_opener(auth_handler)
-    urllib.request.install_opener(opener)
 
 def find_offset(image, y):
     palette = image.getpalette()
@@ -23,7 +17,7 @@ def find_offset(image, y):
             return x - 1
 
 def main():
-    configure_auth()
+    PC_Util.configure_auth()
     local_filename = urllib.request.urlretrieve('http://www.pythonchallenge.com/pc/return/mozart.gif')[0]
     image = Image.open(local_filename)
     width, height = image.size
