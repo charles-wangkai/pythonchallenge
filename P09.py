@@ -6,19 +6,13 @@
 import re
 import urllib.request
 from PIL import Image, ImageDraw
-
-def configure_auth():
-    password_mgr = urllib.request.HTTPPasswordMgrWithDefaultRealm()
-    password_mgr.add_password(None, 'http://www.pythonchallenge.com', 'huge', 'file')
-    auth_handler = urllib.request.HTTPBasicAuthHandler(password_mgr)
-    opener = urllib.request.build_opener(auth_handler)
-    urllib.request.install_opener(opener)
+import PC_Util
 
 def parse_points(source, keyword):
     return list(map(int, re.search(r'(?:' + keyword + ':)(.+?)(?:^$)', source, re.MULTILINE | re.DOTALL).group(1).replace('\n', '').split(sep=',')))
 
 def main():
-    configure_auth()
+    PC_Util.configure_auth()
     source = urllib.request.urlopen('http://www.pythonchallenge.com/pc/return/good.html').read().decode()
     
     first = parse_points(source, 'first')
