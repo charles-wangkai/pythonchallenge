@@ -6,16 +6,10 @@
 import urllib.request, urllib.parse
 import webbrowser
 from PIL import Image
+import PC_Util
 
 MIN_X, MIN_Y, RANGE_X, RANGE_Y = 0.34, 0.57, 0.036, 0.027
 MAX_ITERATION = 128
-
-def configure_auth():
-    password_mgr = urllib.request.HTTPPasswordMgrWithDefaultRealm()
-    password_mgr.add_password(None, 'http://www.pythonchallenge.com', 'kohsamui', 'thailand')
-    auth_handler = urllib.request.HTTPBasicAuthHandler(password_mgr)
-    opener = urllib.request.build_opener(auth_handler)
-    urllib.request.install_opener(opener)
 
 def compute_mandelbrot(c):
     z = 0
@@ -33,7 +27,7 @@ def factorize(n):
 def main():
     webbrowser.open('https://www.google.com/#newwindow=1&q={keywords}'.format(keywords=urllib.parse.quote_plus('grandpa rock')))
     
-    configure_auth()
+    PC_Util.configure_auth()
     local_filename = urllib.request.urlretrieve('http://www.pythonchallenge.com/pc/rock/mandelbrot.gif')[0]
     image = Image.open(local_filename)
     width, height = image.size
