@@ -6,16 +6,10 @@
 import urllib.request
 import wave
 from PIL import Image
-
-def configure_auth():
-    password_mgr = urllib.request.HTTPPasswordMgrWithDefaultRealm()
-    password_mgr.add_password(None, 'http://www.pythonchallenge.com', 'butter', 'fly')
-    auth_handler = urllib.request.HTTPBasicAuthHandler(password_mgr)
-    opener = urllib.request.build_opener(auth_handler)
-    urllib.request.install_opener(opener)
+import PC_Util
 
 def main():
-    configure_auth()
+    PC_Util.configure_auth()
     
     PART_SIZE = 60
     
