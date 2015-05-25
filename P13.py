@@ -6,16 +6,10 @@
 import re
 import urllib.request
 import xmlrpc.client
+import PC_Util
 
-def configure_auth():
-    password_mgr = urllib.request.HTTPPasswordMgrWithDefaultRealm()
-    password_mgr.add_password(None, 'http://www.pythonchallenge.com', 'huge', 'file')
-    auth_handler = urllib.request.HTTPBasicAuthHandler(password_mgr)
-    opener = urllib.request.build_opener(auth_handler)
-    urllib.request.install_opener(opener)
-    
 def main():
-    configure_auth()
+    PC_Util.configure_auth()
     pic_content = urllib.request.urlopen('http://www.pythonchallenge.com/pc/return/evil4.jpg').read().decode()
     print(pic_content)
     evil = re.search(r'(.+) is evil', pic_content).group(1)
